@@ -34,7 +34,7 @@
         <input type="checkbox" id="check">
         <header>
             <div class="left_area">
-                <h3>Be<span>Healthy</span></h3>
+                <h3><span>Loja</span>Tec</h3>
             </div>
             <div class="right_area">
                 <?php
