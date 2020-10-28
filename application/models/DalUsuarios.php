@@ -26,4 +26,14 @@ class DalUsuarios extends CI_Model
         $result = $this->db->get("Tbl_Usuario")->row_array();
         return $result;
     }
+
+    public function AlterarFoto($idUser, $foto){
+
+        $data = array(
+            'foto' => $foto 
+        );
+        $this->db->where('id_Usuario', $idUser);
+        $this->db->update('Tbl_Usuario',$data);
+
+    }
 }

@@ -33,24 +33,16 @@ $(document).ready(function () {
             size: 'viewport'
         }).then(function (response) {
             $.ajax({
-                url: "index.php/Welcome/UploadImage",
+                url: "UploadImage",
                 type: "POST",
                 data: {
                     "image": response
                 },
                 success: function (data) {
-                    const ElementFormData = document.querySelector('#upload_image');
-                    console.log(ElementFormData);
-                    // ElementFormData.value = "";
-                    const dataQuery = response;
-
-                    console.log(document.querySelector('#upload_image').value);
-                    formElement = document.querySelector('#ImageFormElement');
-                    formElement.submit();
                     $('#uploadimageModal').modal('hide');
                     $('#uploaded_image').html(data);
-                    // imgmod = document.querySelector('#AlterImg');
-                    // imgmod.src = Url_Image;
+                    imgmod = document.querySelector('#Default');
+                    imgmod.src = Url_Image;
                     
                 }
             });

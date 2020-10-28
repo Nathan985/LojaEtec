@@ -16,12 +16,42 @@ class BLL_Usuarios extends CI_Controller
         $this->load->view('view_Home');
     }
 
-    public function Logout(){
+    public function Logout()
+    {
         $this->session->sess_destroy();
         $this->index();
     }
+    public function UploadImage()
+    {
 
-    public function Perfil(){
+        $data = $_POST["image"];
+
+
+        $image_array_1 = explode(";", $data);
+        $image_array_2 = explode(",", $image_array_1[1]);
+        $data_convert = base64_decode($image_array_2[1]);
+
+        $diretorio = './assets/IMG/Clientes/';
+        $nome = md5(time()) . '.png';
+
+        $imageName = $diretorio . $nome;
+
+        file_put_contents($imageName, $data_convert);
+        $id = $this->session->id_Usuario;
+        $this->AlterarFoto($id, $nome);
+
+    }
+
+    public function AlterarFoto($id ,$nome){
+        $this->load->model('DalUsuarios');
+        
+        $this->DalUsuarios->AlterarFoto($id, $nome);
+
+        $this->session->foto = $nome;
+    }
+
+    public function Perfil()
+    {
         $this->load->view('view_Perfil');
     }
 
@@ -62,18 +92,18 @@ class BLL_Usuarios extends CI_Controller
                 echo "FalhaLogin!";
                 die();
             }
-       }
+        }
     }
 
-    function Session($dados){
-
+    function Session($dados)
+    {
         $this->session->nome = $dados['nome'];
+        $this->session->id_Usuario = $dados['id_Usuario'];
         $this->session->login = true;
         $this->session->email = $dados['email'];
         $this->session->nickname = $dados['nickname'];
         $this->session->foto = $dados['foto'];
         $this->session->cargo = $dados['cargo'];
-
     }
 
 
@@ -170,11 +200,11 @@ class BLL_Usuarios extends CI_Controller
         return true;
     }
 
-    private function Hash($senha){
+    private function Hash($senha)
+    {
 
         $result = md5($senha);
 
         return $result;
-
     }
 }
