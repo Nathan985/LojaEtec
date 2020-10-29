@@ -42,6 +42,10 @@ $(document).ready(function () {
                     $('#uploadimageModal').modal('hide');
                     $('#uploaded_image').html(data);
                     imgmod = document.querySelector('#Default');
+                    imgpf = document.querySelector('#IMGPF');
+                    if(imgpf){
+                        imgpf.src = Url_Image;
+                    }
                     imgmod.src = Url_Image;
                     
                 }

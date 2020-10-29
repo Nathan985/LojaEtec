@@ -30,7 +30,7 @@
         </style>
     </head>
 
-    <body>
+    <body class="hero">
         <input type="checkbox" id="check">
         <header>
             <div class="left_area">
@@ -61,7 +61,7 @@
                     }
                     ?>
 
-                    <h4 class="textCSS"><?php if (isset($this->session->nome)) {
+                    <h4 id="Nameside" class="textCSS"><?php if (isset($this->session->nome)) {
                                             echo $this->session->nome;
                                         } ?></h4>
             </center>

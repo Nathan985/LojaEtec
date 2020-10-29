@@ -39,12 +39,12 @@ class BLL_Usuarios extends CI_Controller
         file_put_contents($imageName, $data_convert);
         $id = $this->session->id_Usuario;
         $this->AlterarFoto($id, $nome);
-
     }
 
-    public function AlterarFoto($id ,$nome){
+    public function AlterarFoto($id, $nome)
+    {
         $this->load->model('DalUsuarios');
-        
+
         $this->DalUsuarios->AlterarFoto($id, $nome);
 
         $this->session->foto = $nome;
@@ -97,13 +97,26 @@ class BLL_Usuarios extends CI_Controller
 
     function Session($dados)
     {
+
         $this->session->nome = $dados['nome'];
         $this->session->id_Usuario = $dados['id_Usuario'];
         $this->session->login = true;
         $this->session->email = $dados['email'];
+        $this->session->cpf = $dados['cpf'];
+        $this->session->telefone = $dados['telefone'];
         $this->session->nickname = $dados['nickname'];
         $this->session->foto = $dados['foto'];
         $this->session->cargo = $dados['cargo'];
+        $this->session->senha = $dados['senha'];
+    }
+    function AlterarSession($dados)
+    {
+
+        $this->session->nome = $dados['nome'];
+        $this->session->email = $dados['email'];
+        $this->session->telefone = $dados['telefone'];
+        $this->session->nickname = $dados['nickname'];
+        $this->session->senha = $dados['senha'];
     }
 
 
@@ -198,6 +211,65 @@ class BLL_Usuarios extends CI_Controller
             die();
         }
         return true;
+    }
+
+    public function AlterarDados()
+    {
+        $dados = [
+            "nome" => $this->input->post("Nome"),
+            "email" => $this->input->post("email"),
+            "senha" => $this->input->post("senha"),
+            "nickname" => $this->input->post("nick"),
+            "telefone" => $this->input->post("telefone")
+        ];
+        $cfsenha = $this->input->post("confsenha");
+        $id = $this->session->id_Usuario;
+
+        $this->load->model('DalUsuarios');
+        if (empty($dados["nome"])) {
+            $dados["nome"] = $this->session->nome;
+        }
+        if (empty($dados["email"])) {
+            $dados["email"] = $this->session->email;
+        } else if ($dados["email"] != $this->session->email) {
+            $bool = $this->DalUsuarios->ValidarCampo("email", $dados['email']);
+            if ($bool) {
+                echo "ErroEmailCadastrado";
+                die();
+            }
+        }
+        if (empty($dados["senha"])) {
+            $dados["senha"] = $this->session->senha;
+        } else {
+            if ($dados["senha"] != $cfsenha) {
+                echo "ErroSenhasDiferentes";
+                die();
+            } else {
+                $dados["senha"] = $this->Hash($dados["senha"]);
+            }
+        }
+        if (empty($dados["nickname"])) {
+            $dados["nickname"] = $this->session->nickname;
+        } else if ($dados["nickname"] != $this->session->nickname) {
+            $bool = $this->DalUsuarios->ValidarCampo("nickname", $dados['nickname']);
+            if ($bool) {
+                echo "ErroNickCadastrado";
+                die();
+            }
+        }
+        if (empty($dados["telefone"])) {
+            $dados["telefone"] = $this->session->telefone;
+        }
+
+        if ($this->DalUsuarios->AlterarDados($id, $dados)) {
+            $this->AlterarSession($dados);
+            echo "SucessoAlteracao";
+            die();
+        }
+        else{
+            echo "ErroAlteracao";
+            die();
+        }
     }
 
     private function Hash($senha)

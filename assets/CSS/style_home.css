@@ -118,6 +118,16 @@ label #sidebar_btn {
     margin-left: 30px;
 }
 
+.hero {
+    height: 100%;
+    width: 100%;
+    background-image: linear-gradient(rgb(0, 0, 0, 0.4), rgb(0, 0, 0, 0.4)), url('../IMG/banner.jpg');
+    background-position: center;
+    background-size: cover;
+    position: fixed;
+    background-attachment: fixed;
+}
+
 label #sidebar_btn:hover {
     color: #19B3D3;
 }
@@ -138,7 +148,6 @@ label #sidebar_btn:hover {
 
 .content {
     margin-left: 250px;
-    background-image: linear-gradient(rgb(0, 0, 0, 0.4), rgb(0, 0, 0, 0.4)), url('../IMG/banner.jpg');
     background-size: cover;
     height: 100vh;
     background-attachment: fixed;
@@ -401,4 +410,31 @@ label #sidebar_btn:hover {
 }
 .bannerTec{
     margin-top: 12rem;
+}
+.Margin-nome{
+    margin-top: 1rem;
+}
+
+.styleContainer{
+    border-radius: 1rem;
+    font-size: 19px;
+    margin-top: 8rem;
+}
+.button-alt{
+    font-size: 50px;
+}
+.Cam_IMG_pf{
+    background-color: rgba(97, 97, 97, 0.541);
+    border-radius: 100%;
+    padding: 3px 3px 3px 3px;
+    z-index: 1;
+    cursor: pointer;
+    position: absolute;
+    margin-top: -50px;
+    margin-left: 16rem;
+    display: flex;
+    width: 30px;
+    height: 30px;
+}
+#IMGPF{
 }

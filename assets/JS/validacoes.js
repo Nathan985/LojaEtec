@@ -87,7 +87,7 @@ $(function () {
                     var exibirErro = document.getElementById("passErro");
                     exibirErro.className = "d-none alert";
                 }
-                if(data == "Erro Usuario!"){
+                if (data == "Erro Usuario!") {
 
                     const Toast = Swal.mixin({
                         toast: true,
@@ -452,7 +452,7 @@ $(function () {
                         title: 'Senhas não conferem!',
                     })
                 }
-                else if(data != "ErroConfSenha" && data != "ErroSenhacad"){
+                else if (data != "ErroConfSenha" && data != "ErroSenhacad") {
                     var titulo = document.querySelector('#CadCpPass');
                     titulo.className = "input-field";
                     var titulo = document.querySelector('#CadConfirm2')
@@ -529,7 +529,7 @@ $(function () {
                         title: 'Nickname já Cadastrado!',
                     })
                 }
-                else if(data != "ErroNick") {
+                else if (data != "ErroNick") {
                     var titulo = document.querySelector('#cadUsername');
                     titulo.className = "input-field";
                     var titulo = document.querySelector('#CadNickCadastrado');
@@ -605,7 +605,7 @@ $(function () {
                         title: 'CPF já Cadastrado!',
                     })
                 }
-                else if(data != "ErroCPf"){
+                else if (data != "ErroCPf") {
                     var titulo = document.getElementById("cadCPF");
                     titulo.className = "input-field";
                     var titulo = document.getElementById("CadCpfCadastrado");
@@ -703,6 +703,188 @@ $(function () {
                     })
                 }
 
+
+            },//success
+        });//ajax
+        return false;
+    });//function de dentro
+});//function de fora
+
+$(function () {
+    $('#AlterUser').submit(function () {
+        var obj = this;
+        var form = $(obj);
+        var dados = new FormData(obj);
+        $.ajax({
+            url: form.attr('action'),
+            type: form.attr('method'),
+            data: dados,
+            processData: false,
+            cache: false,
+            contentType: false,
+            success: function (data) {
+                console.log(data);
+                if (data == "ErroEmailCadastrado") {
+                    var titulo = document.getElementById("EmailPF");
+                    titulo.className = "input-field invalid mt-3 col-5";
+
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'center-end',
+                        background: '#fff',
+                        showConfirmButton: false,
+                        width: '420px',
+                        padding: '1.2rem',
+                        timer: 3000,
+                        timerProgressBar: true,
+                        onOpen: (toast) => {
+                            toast.addEventListener('mouseenter', Swal.stopTimer)
+                            toast.addEventListener('mouseleave', Swal.resumeTimer)
+                        }
+                    })
+                    Toast.fire({
+                        customClass: {
+                            content: 'CustomColor',
+                            title: 'CustomText',
+                            popup: 'CustomColor',
+                            footer: 'CustomText'
+                        },
+                        icon: 'error',
+                        title: 'Email Já Cadastrado!',
+                    })
+
+                }
+                else{
+                    var titulo = document.getElementById("EmailPF");
+                    titulo.className = "input-field mt-3 col-5";
+                }
+                if (data == "ErroNickCadastrado") {
+                    var titulo = document.getElementById("NickPF");
+                    titulo.className = "input-field invalid mt-3 col-5 ml-3";
+
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'center-end',
+                        background: '#fff',
+                        showConfirmButton: false,
+                        width: '420px',
+                        padding: '1.2rem',
+                        timer: 3000,
+                        timerProgressBar: true,
+                        onOpen: (toast) => {
+                            toast.addEventListener('mouseenter', Swal.stopTimer)
+                            toast.addEventListener('mouseleave', Swal.resumeTimer)
+                        }
+                    })
+                    Toast.fire({
+                        customClass: {
+                            content: 'CustomColor',
+                            title: 'CustomText',
+                            popup: 'CustomColor',
+                            footer: 'CustomText'
+                        },
+                        icon: 'error',
+                        title: 'Nickname Já Cadastrado!',
+                    })
+
+                }
+                else{
+                    var titulo = document.getElementById("NickPF");
+                    titulo.className = "input-field mt-3 col-5 ml-3";
+                }
+                if (data == "ErroSenhasDiferentes") {
+                    var titulo = document.getElementById("senhaPF");
+                    titulo.className = "input-field invalid mt-3 col-5";
+                    var titulo = document.getElementById("confsenhaPF");
+                    titulo.className = "input-field invalid mt-3 mb-5 col-5 ml-3";
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'center-end',
+                        background: '#fff',
+                        showConfirmButton: false,
+                        width: '420px',
+                        padding: '1.2rem',
+                        timer: 3000,
+                        timerProgressBar: true,
+                        onOpen: (toast) => {
+                            toast.addEventListener('mouseenter', Swal.stopTimer)
+                            toast.addEventListener('mouseleave', Swal.resumeTimer)
+                        }
+                    })
+                    Toast.fire({
+                        customClass: {
+                            content: 'CustomColor',
+                            title: 'CustomText',
+                            popup: 'CustomColor',
+                            footer: 'CustomText'
+                        },
+                        icon: 'error',
+                        title: 'Senhas não Conferem!',
+                    })
+
+                }
+                else{
+                    var titulo = document.getElementById("senhaPF");
+                    titulo.className = "input-field mt-3 col-5";
+                    var titulo = document.getElementById("confsenhaPF");
+                    titulo.className = "input-field mt-3 mb-5 col-5 ml-3";
+                }
+                if (data == "SucessoAlteracao") {
+
+                    window.location.reload()
+
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'center-end',
+                        background: '#fff',
+                        showConfirmButton: false,
+                        width: '420px',
+                        padding: '1.2rem',
+                        timer: 3000,
+                        timerProgressBar: true,
+                        onOpen: (toast) => {
+                            toast.addEventListener('mouseenter', Swal.stopTimer)
+                            toast.addEventListener('mouseleave', Swal.resumeTimer)
+                        }
+                    })
+                    Toast.fire({
+                        customClass: {
+                            content: 'CustomColor',
+                            title: 'CustomText',
+                            popup: 'CustomColor',
+                            footer: 'CustomText'
+                        },
+                        icon: 'success',
+                        title: 'Alteração Realizada!',
+                    })
+
+                }
+                if (data == "ErroAlteracao") {
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'center-end',
+                        background: '#fff',
+                        showConfirmButton: false,
+                        width: '420px',
+                        padding: '1.2rem',
+                        timer: 3000,
+                        timerProgressBar: true,
+                        onOpen: (toast) => {
+                            toast.addEventListener('mouseenter', Swal.stopTimer)
+                            toast.addEventListener('mouseleave', Swal.resumeTimer)
+                        }
+                    })
+                    Toast.fire({
+                        customClass: {
+                            content: 'CustomColor',
+                            title: 'CustomText',
+                            popup: 'CustomColor',
+                            footer: 'CustomText'
+                        },
+                        icon: 'error',
+                        title: 'Falha Alteração!',
+                    })
+                }
 
             },//success
         });//ajax

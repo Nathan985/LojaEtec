@@ -36,4 +36,10 @@ class DalUsuarios extends CI_Model
         $this->db->update('Tbl_Usuario',$data);
 
     }
+
+    public function AlterarDados($idUser, $dados){
+        $this->db->where('id_Usuario', $idUser);
+        $bool = $this->db->update('Tbl_Usuario', $dados);
+        return $bool;
+    }
 }
