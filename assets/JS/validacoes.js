@@ -754,7 +754,7 @@ $(function () {
                     })
 
                 }
-                else{
+                else {
                     var titulo = document.getElementById("EmailPF");
                     titulo.className = "input-field mt-3 col-5";
                 }
@@ -788,7 +788,7 @@ $(function () {
                     })
 
                 }
-                else{
+                else {
                     var titulo = document.getElementById("NickPF");
                     titulo.className = "input-field mt-3 col-5 ml-3";
                 }
@@ -823,7 +823,7 @@ $(function () {
                     })
 
                 }
-                else{
+                else {
                     var titulo = document.getElementById("senhaPF");
                     titulo.className = "input-field mt-3 col-5";
                     var titulo = document.getElementById("confsenhaPF");
@@ -884,6 +884,418 @@ $(function () {
                         icon: 'error',
                         title: 'Falha Alteração!',
                     })
+                }
+
+            },//success
+        });//ajax
+        return false;
+    });//function de dentro
+});//function de fora
+
+
+$(function () {
+    $('#FormProduct').submit(function () {
+        var obj = this;
+        var form = $(obj);
+        var dados = new FormData(obj);
+        $.ajax({
+            url: form.attr('action'),
+            type: form.attr('method'),
+            data: dados,
+            processData: false,
+            cache: false,
+            contentType: false,
+            success: function (data) {
+
+                if (data == "errornomevazio") {
+                    var titulo = document.getElementById("NomePD");
+                    titulo.className = "input-field invalid mt-4 col-5";
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'center-end',
+                        background: '#fff',
+                        showConfirmButton: false,
+                        width: '420px',
+                        padding: '1.2rem',
+                        timer: 3000,
+                        timerProgressBar: true,
+                        onOpen: (toast) => {
+                            toast.addEventListener('mouseenter', Swal.stopTimer)
+                            toast.addEventListener('mouseleave', Swal.resumeTimer)
+                        }
+                    })
+                    Toast.fire({
+                        customClass: {
+                            content: 'CustomColor',
+                            title: 'CustomText',
+                            popup: 'CustomColor',
+                            footer: 'CustomText'
+                        },
+                        icon: 'error',
+                        title: 'Nome Vazio!',
+                    })
+                }
+                else {
+                    var titulo = document.getElementById("NomePD");
+                    titulo.className = "input-field mt-4 col-5";
+                }
+                if (data == "errorcodigovazio") {
+                    var titulo = document.getElementById("CodigoPF");
+                    titulo.className = "input-field invalid mt-4 ml-3 col-5";
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'center-end',
+                        background: '#fff',
+                        showConfirmButton: false,
+                        width: '420px',
+                        padding: '1.2rem',
+                        timer: 3000,
+                        timerProgressBar: true,
+                        onOpen: (toast) => {
+                            toast.addEventListener('mouseenter', Swal.stopTimer)
+                            toast.addEventListener('mouseleave', Swal.resumeTimer)
+                        }
+                    })
+                    Toast.fire({
+                        customClass: {
+                            content: 'CustomColor',
+                            title: 'CustomText',
+                            popup: 'CustomColor',
+                            footer: 'CustomText'
+                        },
+                        icon: 'error',
+                        title: 'Codigo Vazio!',
+                    })
+                }
+                else {
+                    var titulo = document.getElementById("CodigoPF");
+                    titulo.className = "input-field mt-4 ml-3 col-5";
+                }
+                if (data == "errorprecovazio") {
+                    var titulo = document.getElementById("PrecoPD");
+                    titulo.className = "input-field invalid mt-5 col-5";
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'center-end',
+                        background: '#fff',
+                        showConfirmButton: false,
+                        width: '420px',
+                        padding: '1.2rem',
+                        timer: 3000,
+                        timerProgressBar: true,
+                        onOpen: (toast) => {
+                            toast.addEventListener('mouseenter', Swal.stopTimer)
+                            toast.addEventListener('mouseleave', Swal.resumeTimer)
+                        }
+                    })
+                    Toast.fire({
+                        customClass: {
+                            content: 'CustomColor',
+                            title: 'CustomText',
+                            popup: 'CustomColor',
+                            footer: 'CustomText'
+                        },
+                        icon: 'error',
+                        title: 'Preço Vazio!',
+                    })
+                }
+                else {
+                    var titulo = document.getElementById("PrecoPD");
+                    titulo.className = "input-field mt-5 col-5";
+                }
+                if (data == "errorfotovazio") {
+                    var titulo = document.getElementById("image_pd");
+                    titulo.className = "invalidImage contProduct";
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'center-end',
+                        background: '#fff',
+                        showConfirmButton: false,
+                        width: '420px',
+                        padding: '1.2rem',
+                        timer: 3000,
+                        timerProgressBar: true,
+                        onOpen: (toast) => {
+                            toast.addEventListener('mouseenter', Swal.stopTimer)
+                            toast.addEventListener('mouseleave', Swal.resumeTimer)
+                        }
+                    })
+                    Toast.fire({
+                        customClass: {
+                            content: 'CustomColor',
+                            title: 'CustomText',
+                            popup: 'CustomColor',
+                            footer: 'CustomText'
+                        },
+                        icon: 'error',
+                        title: 'Foto Vazia!',
+                    })
+
+                }
+                else {
+                    var titulo = document.getElementById("image_pd");
+                    titulo.className = "contProduct";
+                }
+                if (data == "errordescircaovazio") {
+                    var titulo = document.getElementById("DescricaoPD");
+                    titulo.className = "input-field invalid mt-5 col-5 mb-5 ml-3";
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'center-end',
+                        background: '#fff',
+                        showConfirmButton: false,
+                        width: '420px',
+                        padding: '1.2rem',
+                        timer: 3000,
+                        timerProgressBar: true,
+                        onOpen: (toast) => {
+                            toast.addEventListener('mouseenter', Swal.stopTimer)
+                            toast.addEventListener('mouseleave', Swal.resumeTimer)
+                        }
+                    })
+                    Toast.fire({
+                        customClass: {
+                            content: 'CustomColor',
+                            title: 'CustomText',
+                            popup: 'CustomColor',
+                            footer: 'CustomText'
+                        },
+                        icon: 'error',
+                        title: 'Descrição Vazia!',
+                    })
+
+                }
+                else {
+                    var titulo = document.getElementById("DescricaoPD");
+                    titulo.className = "input-field mt-5 col-5 mb-5 ml-3";
+                }
+                if (data == "errordata_estoquevazio") {
+                    var titulo = document.getElementById("DataPF");
+                    titulo.className = "input-field invalid mt-5 col-5";
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'center-end',
+                        background: '#fff',
+                        showConfirmButton: false,
+                        width: '420px',
+                        padding: '1.2rem',
+                        timer: 3000,
+                        timerProgressBar: true,
+                        onOpen: (toast) => {
+                            toast.addEventListener('mouseenter', Swal.stopTimer)
+                            toast.addEventListener('mouseleave', Swal.resumeTimer)
+                        }
+                    })
+                    Toast.fire({
+                        customClass: {
+                            content: 'CustomColor',
+                            title: 'CustomText',
+                            popup: 'CustomColor',
+                            footer: 'CustomText'
+                        },
+                        icon: 'error',
+                        title: 'Data Vazio!',
+                    })
+                }
+                else {
+                    var titulo = document.getElementById("DataPF");
+                    titulo.className = "input-field mt-5 col-5";
+                }
+                if (data == "errorquantidadevazio") {
+                    var titulo = document.getElementById("QuantidadePD");
+                    titulo.className = "input-field mt-5 col-5 ml-3 invalid";
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'center-end',
+                        background: '#fff',
+                        showConfirmButton: false,
+                        width: '420px',
+                        padding: '1.2rem',
+                        timer: 3000,
+                        timerProgressBar: true,
+                        onOpen: (toast) => {
+                            toast.addEventListener('mouseenter', Swal.stopTimer)
+                            toast.addEventListener('mouseleave', Swal.resumeTimer)
+                        }
+                    })
+                    Toast.fire({
+                        customClass: {
+                            content: 'CustomColor',
+                            title: 'CustomText',
+                            popup: 'CustomColor',
+                            footer: 'CustomText'
+                        },
+                        icon: 'error',
+                        title: 'Quantidade Vazia!',
+                    })
+                }
+                else {
+                    var titulo = document.getElementById("QuantidadePD");
+                    titulo.className = "input-field mt-5 col-5 ml-3";
+                }
+                if (data == "errocodigojaexistem") {
+                    var titulo = document.getElementById("CodigoPF");
+                    titulo.className = "input-field mt-4 col-5 ml-3 invalid";
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'center-end',
+                        background: '#fff',
+                        showConfirmButton: false,
+                        width: '420px',
+                        padding: '1.2rem',
+                        timer: 3000,
+                        timerProgressBar: true,
+                        onOpen: (toast) => {
+                            toast.addEventListener('mouseenter', Swal.stopTimer)
+                            toast.addEventListener('mouseleave', Swal.resumeTimer)
+                        }
+                    })
+                    Toast.fire({
+                        customClass: {
+                            content: 'CustomColor',
+                            title: 'CustomText',
+                            popup: 'CustomColor',
+                            footer: 'CustomText'
+                        },
+                        icon: 'error',
+                        title: 'Codigo Já Cadastrado!',
+                    })
+                }
+                else if(data != "errorcodigovazio"){
+                    var titulo = document.getElementById("CodigoPF");
+                    titulo.className = "input-field mt-4 col-5 ml-3";
+                }
+                if (data == "errorprecoinvalido") {
+                    var titulo = document.getElementById("PrecoPD");
+                    titulo.className = "input-field mt-5 col-5 invalid";
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'center-end',
+                        background: '#fff',
+                        showConfirmButton: false,
+                        width: '420px',
+                        padding: '1.2rem',
+                        timer: 3000,
+                        timerProgressBar: true,
+                        onOpen: (toast) => {
+                            toast.addEventListener('mouseenter', Swal.stopTimer)
+                            toast.addEventListener('mouseleave', Swal.resumeTimer)
+                        }
+                    })
+                    Toast.fire({
+                        customClass: {
+                            content: 'CustomColor',
+                            title: 'CustomText',
+                            popup: 'CustomColor',
+                            footer: 'CustomText'
+                        },
+                        icon: 'error',
+                        title: 'Preço Invalido!',
+                    })
+
+                }
+                else if(data != "errorprecovazio"){
+
+                    var titulo = document.getElementById("PrecoPD");
+                    titulo.className = "input-field mt-5 col-5";
+                }
+                if (data == "errorquantidadeinvalida") {
+                    var titulo = document.getElementById("QuantidadePD");
+                    titulo.className = "input-field mt-5 col-5 invalid";
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'center-end',
+                        background: '#fff',
+                        showConfirmButton: false,
+                        width: '420px',
+                        padding: '1.2rem',
+                        timer: 3000,
+                        timerProgressBar: true,
+                        onOpen: (toast) => {
+                            toast.addEventListener('mouseenter', Swal.stopTimer)
+                            toast.addEventListener('mouseleave', Swal.resumeTimer)
+                        }
+                    })
+                    Toast.fire({
+                        customClass: {
+                            content: 'CustomColor',
+                            title: 'CustomText',
+                            popup: 'CustomColor',
+                            footer: 'CustomText'
+                        },
+                        icon: 'error',
+                        title: 'Quantidade invalida!',
+                    })
+
+                }
+                else if(data != "errorquantidadevazio"){
+                    var titulo = document.getElementById("QuantidadePD");
+                    titulo.className = "input-field mt-5 col-5";
+                }
+
+                if (data == "ProdutoCadastrado") {
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'center-end',
+                        background: '#fff',
+                        showConfirmButton: false,
+                        width: '420px',
+                        padding: '1.2rem',
+                        timer: 3000,
+                        timerProgressBar: true,
+                        onOpen: (toast) => {
+                            toast.addEventListener('mouseenter', Swal.stopTimer)
+                            toast.addEventListener('mouseleave', Swal.resumeTimer)
+                        }
+                    })
+                    Toast.fire({
+                        customClass: {
+                            content: 'CustomColor',
+                            title: 'CustomText',
+                            popup: 'CustomColor',
+                            footer: 'CustomText'
+                        },
+                        icon: 'sucess',
+                        title: 'Produto Cadastrado!',
+                    })
+                    LimparDados();
+                }
+
+                function LimparDados() {
+                    var campos = document.querySelectorAll('#Register input');
+                    for (campo of campos) {
+                        campo.value = '';
+                    }
+                    var img = document.querySelector('#image_pd');
+                    img.src = "./assets/IMG/product.png"
+                }
+
+                if (data == "erroCadastrado") {
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'center-end',
+                        background: '#fff',
+                        showConfirmButton: false,
+                        width: '420px',
+                        padding: '1.2rem',
+                        timer: 3000,
+                        timerProgressBar: true,
+                        onOpen: (toast) => {
+                            toast.addEventListener('mouseenter', Swal.stopTimer)
+                            toast.addEventListener('mouseleave', Swal.resumeTimer)
+                        }
+                    })
+                    Toast.fire({
+                        customClass: {
+                            content: 'CustomColor',
+                            title: 'CustomText',
+                            popup: 'CustomColor',
+                            footer: 'CustomText'
+                        },
+                        icon: 'sucess',
+                        title: 'Erro ao Cadastrar!',
+                    })
+
                 }
 
             },//success

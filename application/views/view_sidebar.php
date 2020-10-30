@@ -49,8 +49,10 @@
         </header>
         <div class="sidebar">
             <center>
-                <label for="upload_image">
-                    <img id="Default" src="<?php if (isset($this->session->foto)) {
+            <?php if(isset($this->session->login) && $this->session->login == true){
+                echo "<label for='upload_image'>";
+            }?>
+                    <img id="Default" style="cursor:pointer" src="<?php if (isset($this->session->foto)) {
                                                 echo base_url('assets/IMG/Clientes/' . $this->session->foto);
                                             } else {
                                                 echo base_url('assets/IMG/Clientes/default_user.png');
@@ -72,7 +74,7 @@
                     echo "
                                 <a href='".base_url('index.php/BLL_Usuarios/TelaHome') ."' class='text-decoration-none'><i class='fas fa-home'></i><span>Inicio</span></a>
                                 <a href='".base_url('index.php/BLL_Usuarios/Perfil') ."' class='text-decoration-none'><i class='fas fa-users-cog'></i><span>Perfil</span></a>
-                                <a href='#' class='text-decoration-none'><i class='fas fa-dolly'></i><span>Cadastrar Produto</span></a>
+                                <a href='". base_url('index.php/BLL_Produtos/') ."' class='text-decoration-none'><i class='fas fa-dolly'></i><span>Cadastrar Produto</span></a>
                                 <a href='#' class='text-decoration-none'><i class='fas fa-box-open'></i><span>Estoque</span></a>
                                 <a href='#' class='text-decoration-none'><i class='far fa-edit'></i><span>Alterar Produto</span></a>
                                 <a href='#' class='text-decoration-none'><i class='fas fa-tools'></i><span>Alterar Estoque</span></a>
@@ -82,8 +84,8 @@
                                 ";
                 } else if (isset($this->session->cargo) && $this->session->cargo == "Cliente") {
                     echo "
-                            <a href='#' class='text-decoration-none'><i class='fas fa-home'></i><span>Inicio</span></a>
-                            <a href='#' class='text-decoration-none'><i class='fas fa-users-cog'></i><span>Perfil</span></a>
+                            <a href='".base_url('index.php/BLL_Usuarios/TelaHome') ."' class='text-decoration-none'><i class='fas fa-home'></i><span>Inicio</span></a>
+                            <a href='".base_url('index.php/BLL_Usuarios/Perfil') ."' class='text-decoration-none'><i class='fas fa-users-cog'></i><span>Perfil</span></a>
                             ";
                 } else {
                     echo "
@@ -91,15 +93,6 @@
                             ";
                 }
                 ?>
-                <!-- <a href="#" class="text-decoration-none"><i class="fas fa-home"></i><span>Inicio</span></a>
-                <a href="#" class="text-decoration-none"><i class="fas fa-users-cog"></i><span>Perfil</span></a>
-                <a href="#" class="text-decoration-none"><i class="fas fa-dolly"></i><span>Cadastrar Produto</span></a>
-                <a href="#" class="text-decoration-none"><i class="fas fa-box-open"></i><span>Estoque</span></a>
-                <a href="#" class="text-decoration-none"><i class="far fa-edit"></i><span>Alterar Produto</span></a>
-                <a href="#" class="text-decoration-none"><i class="fas fa-tools"></i><span>Alterar Estoque</span></a>
-                <a href="#" class="text-decoration-none"><i class="fas fa-cart-plus"></i><span>Vendas</span></a>
-                <a href="#" class="text-decoration-none"><i class="far fa-chart-bar"></i><span>Relatorio Produtos</span></a>
-                <a href="#" class="text-decoration-none"><i class="fas fa-chart-line"></i><span>Relatorio de Venda</span></a> -->
             </Div>
         </div>
 
@@ -141,7 +134,7 @@
                             <br />
                             <br />
                             <br />
-                            <button class="btn btn-success crop_image">Carregar</button>
+                            <button id="ButtonSide" class="btn btn-success crop_image">Carregar</button>
                         </div>
                     </div>
                 </div>

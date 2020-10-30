@@ -11,7 +11,7 @@ $this->load->view('view_sidebar');
     <div class="col-12">
         <div id="imagePerfil" class="row">
             <label class="ml-auto mr-auto" for="upload_image">
-                <img id="IMGPF" class="mt-5 ml-auto mr-auto" style="cursor: pointer" src="<?php echo base_url('assets/IMG/Clientes/' . $this->session->foto); ?>" alt="">
+                <img id="IMGPF" width="200px" height="200px" class="mt-5 ml-auto mr-auto" style="cursor: pointer" src="<?php echo base_url('assets/IMG/Clientes/' . $this->session->foto); ?>" alt="">
                 <img src="<?php echo base_url('assets/IMG/alt_img.png') ?>" class='Cam_IMG_pf'>
             </label>
         </div>
