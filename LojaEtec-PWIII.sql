@@ -39,10 +39,11 @@ CREATE TABLE IF NOT EXISTS Tbl_Produto(
 #CRIAÇÃO DA TABELA ESTOQUES
 CREATE TABLE IF NOT EXISTS Tbl_Estoque(
 	
-    id_Estoque VARCHAR(100) NOT NULL UNIQUE,
+    id_Estoque INT UNSIGNED NOT NULL,
 	codigo VARCHAR(40) NOT NULL,
     quantidade INT UNSIGNED NOT NULL,
     data_estoque DATE NOT NULL DEFAULT NOW(),
+    fk_id_produto VARCHAR(100) NOT NULL UNIQUE,
 	PRIMARY KEY(id_Estoque)
 
 );
@@ -78,5 +79,8 @@ ALTER TABLE Tbl_Vendas ADD CONSTRAINT fk_id_Usuario_vendas FOREIGN KEY (fk_id_Us
 
 #FOREIGN KEY TABELA QUANTIDADE_PRODUTOS CAMPO ID_VENDA
 ALTER TABLE Tbl_QuantidadeProdutos ADD CONSTRAINT fk_id_Venda_Quantidade FOREIGN KEY (fk_id_Venda) REFERENCES Tbl_Vendas(id_Venda);
+
+#FOREIGN KEY TABELA ESTOQUE CAMPO ID_PRODUTO
+ALTER TABLE Tbl_Estoque ADD CONSTRAINT fk_id_Produto_Estoque FOREIGN KEY (fk_id_Produto) REFERENCES Tbl_Produto(id_Produto);
 
 -- -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

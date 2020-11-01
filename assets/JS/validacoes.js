@@ -1267,7 +1267,7 @@ $(function () {
                         campo.value = '';
                     }
                     var img = document.querySelector('#image_pd');
-                    img.src = "./assets/IMG/product.png"
+                    img.src = "http://localhost/LojinhaEtec/assets/IMG/product.png"
                 }
 
                 if (data == "erroCadastrado") {

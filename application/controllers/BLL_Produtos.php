@@ -9,6 +9,16 @@ class BLL_Produtos extends CI_Controller
         $this->load->view('view_CadProduto');
     }
 
+    public function Estoque(){
+        $this->load->model('DALProdutos');
+        $data['produto'] = $this->DALProdutos->SelectEstoque();
+        $this->load->view('view_Estoque', $data);
+    }
+
+    public function BuscarEstoque(){
+        
+    }
+
     public function Uploadfoto()
     {
         $data = $_POST["image"];
@@ -45,10 +55,10 @@ class BLL_Produtos extends CI_Controller
             'descircao' => $this->input->post("Descricao")
         ];
         $data_Estoque = [
-            'id_Estoque' => md5(date("d/m/Y h:i:s")),
             'data_estoque' => $this->input->post("Data"),
             'codigo' => $this->input->post("Codigo"),
-            'quantidade' => $this->input->post("Quantidade")
+            'quantidade' => $this->input->post("Quantidade"),
+            'fk_id_Produto' => $data_Produtos['id_Produto']
         ];
 
         foreach ($data_Produtos as $key => $value) {
