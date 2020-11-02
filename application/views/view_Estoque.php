@@ -1,6 +1,9 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
-$this->load->view('view_sidebar')
+$this->load->view('view_sidebar');
+if(!isset($this->session->login)){
+    redirect(base_url('index.php/BLL_Usuarios'));
+}
 ?>
 
 <div class="bannerTec row overFlow ml-auto mr-auto styleContainer bg-white col-10">

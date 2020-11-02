@@ -2,6 +2,9 @@
 defined('BASEPATH') or exit('No direct script access allowed');
 
 $this->load->view('view_sidebar');
+if(!isset($this->session->login)){
+    redirect(base_url('index.php/BLL_Usuarios'));
+}
 ?>
 <!-- <script src="<?php echo base_url('assets/JS/jquery.min.js') ?>"></script>
 <script src="<?php echo base_url('assets/Bootstrap/bootstrap.min.js') ?>"></script>

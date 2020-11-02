@@ -3,6 +3,9 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 $this->load->view('view_sidebar');
 
+if(!isset($this->session->login)){
+    redirect(base_url('index.php/BLL_Usuarios'));
+}
 
 ?>
 <link rel="stylesheet" href="<?php echo base_url('assets/CSS/style.css') ?>">
@@ -22,7 +25,7 @@ $this->load->view('view_sidebar');
             <form id="AlterUser" action="<?php echo base_url('index.php/BLL_Usuarios/AlterarDados') ?>" method="POST">
                 <input type="text" class="input-field mt-3 col-5" value="<?php echo $this->session->nome ?>" placeholder="Name" name="Nome" id="NomePF">
                 <input type="text" class="input-field mt-3 col-5 ml-3" value="<?php echo $this->session->nickname ?>" placeholder="Nickname" name="nick" id="NickPF">
-                <input type="text" class="input-field mt-3 col-5" value="<?php echo $this->session->email ?>" disabled placeholder="Email" name="email" id="EmailPF">
+                <input type="text" class="input-field text-black-50 mt-3 col-5" value="<?php echo $this->session->email ?>" disabled placeholder="Email" name="email" id="EmailPF">
                 <input type="text" class="input-field text-black-50 mt-3 col-5 ml-3" value="<?php echo $this->session->cpf ?>" placeholder="CPF" name="cpf" disabled id="CpfPF">
                 <input type="text" class="input-field text-black-50 mt-3 col-5" value="<?php echo $this->session->cargo ?>" disabled placeholder="cargo" name="cargo" id="CargoPF">
                 <input type="text" class="input-field mt-3 col-5 ml-3" value="<?php echo $this->session->telefone ?>" placeholder="Telefone" name="telefone" id="telefonePf">

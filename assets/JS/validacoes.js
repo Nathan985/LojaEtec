@@ -1262,7 +1262,7 @@ $(function () {
                 }
 
                 function LimparDados() {
-                    var campos = document.querySelectorAll('#Register input');
+                    var campos = document.querySelectorAll('#FormProduct input');
                     for (campo of campos) {
                         campo.value = '';
                     }
