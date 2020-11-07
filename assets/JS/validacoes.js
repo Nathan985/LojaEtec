@@ -1161,7 +1161,7 @@ $(function () {
                         title: 'Codigo Já Cadastrado!',
                     })
                 }
-                else if(data != "errorcodigovazio"){
+                else if (data != "errorcodigovazio") {
                     var titulo = document.getElementById("CodigoPF");
                     titulo.className = "input-field mt-4 col-5 ml-3";
                 }
@@ -1194,7 +1194,7 @@ $(function () {
                     })
 
                 }
-                else if(data != "errorprecovazio"){
+                else if (data != "errorprecovazio") {
 
                     var titulo = document.getElementById("PrecoPD");
                     titulo.className = "input-field mt-5 col-5";
@@ -1228,7 +1228,7 @@ $(function () {
                     })
 
                 }
-                else if(data != "errorquantidadevazio"){
+                else if (data != "errorquantidadevazio") {
                     var titulo = document.getElementById("QuantidadePD");
                     titulo.className = "input-field mt-5 col-5";
                 }
@@ -1255,7 +1255,7 @@ $(function () {
                             popup: 'CustomColor',
                             footer: 'CustomText'
                         },
-                        icon: 'sucess',
+                        icon: 'success',
                         title: 'Produto Cadastrado!',
                     })
                     LimparDados();
@@ -1292,7 +1292,7 @@ $(function () {
                             popup: 'CustomColor',
                             footer: 'CustomText'
                         },
-                        icon: 'sucess',
+                        icon: 'error',
                         title: 'Erro ao Cadastrar!',
                     })
 
@@ -1303,3 +1303,375 @@ $(function () {
         return false;
     });//function de dentro
 });//function de fora
+
+// BUSCAR PRODUTO
+
+$(function () {
+    $('#CadVenda').submit(function () {
+        var obj = this;
+        var form = $(obj);
+        var dados = new FormData(obj);
+        $.ajax({
+            url: form.attr('action'),
+            type: form.attr('method'),
+            data: dados,
+            processData: false,
+            cache: false,
+            contentType: false,
+            success: function (data) {
+
+                if (data === "errocodigonaoencontrado") {
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'center-end',
+                        background: '#fff',
+                        showConfirmButton: false,
+                        width: '420px',
+                        padding: '1.2rem',
+                        timer: 3000,
+                        timerProgressBar: true,
+                        onOpen: (toast) => {
+                            toast.addEventListener('mouseenter', Swal.stopTimer)
+                            toast.addEventListener('mouseleave', Swal.resumeTimer)
+                        }
+                    })
+                    Toast.fire({
+                        customClass: {
+                            content: 'CustomColor',
+                            title: 'CustomText',
+                            popup: 'CustomColor',
+                            footer: 'CustomText'
+                        },
+                        icon: 'error',
+                        title: 'Produto não encontrado!',
+                    })
+                }
+                else {
+                    const dados = JSON.parse(data);
+                    const ElementImg = document.querySelector('#image_pd');
+                    const ElementInputs = {
+                        "nome": document.querySelector('#NomeComp'),
+                        "precoUn": document.querySelector('#PrecoUnidade'),
+                        "quantidade": document.querySelector('#QuantidadeComp'),
+                        "data": document.querySelector('#DataComp'),
+                        "precoTotal": document.querySelector('#PrecoTotal'),
+                        "cpf": document.querySelector('#CPFComp')
+                    }
+                    ElementImg.src = "http://localhost/LojinhaEtec/assets/IMG/Produtos/" + dados.foto.toString();
+                    ElementInputs.nome.value = dados.nome
+                    ElementInputs.precoUn.value = dados.preco;
+                    ElementInputs.precoTotal.value = dados.preco;
+                    ElementInputs.quantidade.removeAttribute('disabled');
+                    ElementInputs.data.removeAttribute('disabled');
+                    ElementInputs.cpf.removeAttribute('disabled');
+                    ElementInputs.nome.removeAttribute('disabled');
+                    ElementInputs.precoUn.removeAttribute('disabled');
+                    ElementInputs.precoTotal.removeAttribute('disabled');
+
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'center-end',
+                        background: '#fff',
+                        showConfirmButton: false,
+                        width: '420px',
+                        padding: '1.2rem',
+                        timer: 3000,
+                        timerProgressBar: true,
+                        onOpen: (toast) => {
+                            toast.addEventListener('mouseenter', Swal.stopTimer)
+                            toast.addEventListener('mouseleave', Swal.resumeTimer)
+                        }
+                    })
+                    Toast.fire({
+                        customClass: {
+                            content: 'CustomColor',
+                            title: 'CustomText',
+                            popup: 'CustomColor',
+                            footer: 'CustomText'
+                        },
+                        icon: 'success',
+                        title: 'Produto Encontrado!',
+                    })
+                }
+
+            }, //success
+        }); //ajax
+        return false;
+    }); //function de dentro
+}); //function de fora
+
+// Cadastrar Venda
+
+$(function () {
+    $('#CadCompra').submit(function () {
+        var obj = this;
+        var form = $(obj);
+        var dados = new FormData(obj);
+        $.ajax({
+            url: form.attr('action'),
+            type: form.attr('method'),
+            data: dados,
+            processData: false,
+            cache: false,
+            contentType: false,
+            success: function (data) {
+                console.log(data);
+                if (data === "erroselecaoproduto") {
+                    var titulo = document.getElementById("CodigoComp");
+                    titulo.className = "col-4 input-field mt-3 invalid";
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'center-end',
+                        background: '#fff',
+                        showConfirmButton: false,
+                        width: '420px',
+                        padding: '1.2rem',
+                        timer: 3000,
+                        timerProgressBar: true,
+                        onOpen: (toast) => {
+                            toast.addEventListener('mouseenter', Swal.stopTimer)
+                            toast.addEventListener('mouseleave', Swal.resumeTimer)
+                        }
+                    })
+                    Toast.fire({
+                        customClass: {
+                            content: 'CustomColor',
+                            title: 'CustomText',
+                            popup: 'CustomColor',
+                            footer: 'CustomText'
+                        },
+                        icon: 'error',
+                        title: 'Informe o Produto',
+                    })
+                }
+                else {
+                    var titulo = document.getElementById("CodigoComp");
+                    titulo.className = "col-4 input-field mt-3";
+                }
+
+                if (data === "errordata_vendavazio") {
+                    var titulo = document.getElementById("DataComp");
+                    titulo.className = "input-field mt-5 col-5 invalid";
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'center-end',
+                        background: '#fff',
+                        showConfirmButton: false,
+                        width: '420px',
+                        padding: '1.2rem',
+                        timer: 3000,
+                        timerProgressBar: true,
+                        onOpen: (toast) => {
+                            toast.addEventListener('mouseenter', Swal.stopTimer)
+                            toast.addEventListener('mouseleave', Swal.resumeTimer)
+                        }
+                    })
+                    Toast.fire({
+                        customClass: {
+                            content: 'CustomColor',
+                            title: 'CustomText',
+                            popup: 'CustomColor',
+                            footer: 'CustomText'
+                        },
+                        icon: 'error',
+                        title: 'Data Vazia',
+                    })
+                }
+                else {
+                    var titulo = document.getElementById("DataComp");
+                    titulo.className = "input-field mt-5 col-5";
+                }
+
+                if (data === "errortotal_vendavazio") {
+                    var titulo = document.getElementById("PrecoTotal");
+                    titulo.className = "input-field mt-5 col-5 invalid";
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'center-end',
+                        background: '#fff',
+                        showConfirmButton: false,
+                        width: '420px',
+                        padding: '1.2rem',
+                        timer: 3000,
+                        timerProgressBar: true,
+                        onOpen: (toast) => {
+                            toast.addEventListener('mouseenter', Swal.stopTimer)
+                            toast.addEventListener('mouseleave', Swal.resumeTimer)
+                        }
+                    })
+                    Toast.fire({
+                        customClass: {
+                            content: 'CustomColor',
+                            title: 'CustomText',
+                            popup: 'CustomColor',
+                            footer: 'CustomText'
+                        },
+                        icon: 'error',
+                        title: 'Preço Total Vazio!',
+                    })
+                }
+                else {
+                    var titulo = document.getElementById("PrecoTotal");
+                    titulo.className = "input-field mt-5 col-5";
+                }
+
+                if (data === "errorpreco_unidadevazio") {
+                    var titulo = document.getElementById("PrecoUnidade");
+                    titulo.className = "input-field mt-5 col-5 invalid";
+
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'center-end',
+                        background: '#fff',
+                        showConfirmButton: false,
+                        width: '420px',
+                        padding: '1.2rem',
+                        timer: 3000,
+                        timerProgressBar: true,
+                        onOpen: (toast) => {
+                            toast.addEventListener('mouseenter', Swal.stopTimer)
+                            toast.addEventListener('mouseleave', Swal.resumeTimer)
+                        }
+                    })
+                    Toast.fire({
+                        customClass: {
+                            content: 'CustomColor',
+                            title: 'CustomText',
+                            popup: 'CustomColor',
+                            footer: 'CustomText'
+                        },
+                        icon: 'error',
+                        title: 'Preço Unidade Vazio!',
+                    })
+                }
+                else {
+                    var titulo = document.getElementById("PrecoUnidade");
+                    titulo.className = "input-field mt-5 col-5";
+                }
+
+                if (data === "errorquantidadevazio") {
+                    var titulo = document.getElementById("QuantidadeComp");
+                    titulo.className = "input-field mt-5 col-5 invalid";
+
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'center-end',
+                        background: '#fff',
+                        showConfirmButton: false,
+                        width: '420px',
+                        padding: '1.2rem',
+                        timer: 3000,
+                        timerProgressBar: true,
+                        onOpen: (toast) => {
+                            toast.addEventListener('mouseenter', Swal.stopTimer)
+                            toast.addEventListener('mouseleave', Swal.resumeTimer)
+                        }
+                    })
+                    Toast.fire({
+                        customClass: {
+                            content: 'CustomColor',
+                            title: 'CustomText',
+                            popup: 'CustomColor',
+                            footer: 'CustomText'
+                        },
+                        icon: 'error',
+                        title: 'Quantidade Vazia!',
+                    })
+                }
+                else {
+                    var titulo = document.getElementById("QuantidadeComp");
+                    titulo.className = "input-field mt-5 col-5";
+                }
+
+                if (data === "errorfk_id_Produtovazio") {
+                    var titulo = document.getElementById("CodigoComp");
+                    titulo.className = "col-4 input-field mt-3 invalid";
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'center-end',
+                        background: '#fff',
+                        showConfirmButton: false,
+                        width: '420px',
+                        padding: '1.2rem',
+                        timer: 3000,
+                        timerProgressBar: true,
+                        onOpen: (toast) => {
+                            toast.addEventListener('mouseenter', Swal.stopTimer)
+                            toast.addEventListener('mouseleave', Swal.resumeTimer)
+                        }
+                    })
+                    Toast.fire({
+                        customClass: {
+                            content: 'CustomColor',
+                            title: 'CustomText',
+                            popup: 'CustomColor',
+                            footer: 'CustomText'
+                        },
+                        icon: 'error',
+                        title: 'Informe o Produto',
+                    })
+                }
+                else if (data !== "erroselecaoproduto") {
+                    var titulo = document.getElementById("CodigoComp");
+                    titulo.className = "col-4 input-field mt-3";
+                }
+
+                if (data === "sucessovenda") {
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'center-end',
+                        background: '#fff',
+                        showConfirmButton: false,
+                        width: '420px',
+                        padding: '1.2rem',
+                        timer: 3000,
+                        timerProgressBar: true,
+                        onOpen: (toast) => {
+                            toast.addEventListener('mouseenter', Swal.stopTimer)
+                            toast.addEventListener('mouseleave', Swal.resumeTimer)
+                        }
+                    })
+                    Toast.fire({
+                        customClass: {
+                            content: 'CustomColor',
+                            title: 'CustomText',
+                            popup: 'CustomColor',
+                            footer: 'CustomText'
+                        },
+                        icon: 'success',
+                        title: 'Venda Cadastrada',
+                    })
+
+                    var campos = document.querySelectorAll('#CadCompra input');
+                    for (campo of campos) {
+                        campo.value = '';
+                    }
+                    var campos = document.querySelectorAll('#CadVenda input');
+                    for (campo of campos) {
+                        campo.value = '';
+                    }
+                    const imgElement = document.querySelector('#image_pd');
+                    imgElement.src = "http://localhost/LojinhaEtec/assets/IMG/product.png"
+
+                    const ElementsInputs = {
+                        "nome": document.querySelector('#NomeComp'),
+                        "precoUn": document.querySelector('#PrecoUnidade'),
+                        "quantidade": document.querySelector('#QuantidadeComp'),
+                        "data": document.querySelector('#DataComp'),
+                        "precoTotal": document.querySelector('#PrecoTotal'),
+                        "cpf": document.querySelector('#CPFComp')
+                    }
+
+                    ElementsInputs.nome.setAttribute('disabled', true);
+                    ElementsInputs.precoUn.setAttribute('disabled', true);
+                    ElementsInputs.quantidade.setAttribute('disabled', true);
+                    ElementsInputs.data.setAttribute('disabled', true);
+                    ElementsInputs.precoTotal.setAttribute('disabled', true);
+                    ElementsInputs.cpf.setAttribute('disabled', true);
+                }
+
+            }, //success
+        }); //ajax
+        return false;
+    }); //function de dentro
+}); //function de fora

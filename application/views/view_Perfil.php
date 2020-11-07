@@ -10,7 +10,7 @@ if(!isset($this->session->login)){
 ?>
 <link rel="stylesheet" href="<?php echo base_url('assets/CSS/style.css') ?>">
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-<div class=" bg-white col-10 bannerTec styleContainer row ml-auto mr-auto">
+<div class="bg-white col-10 bannerTec styleContainer row ml-auto mr-auto">
     <div class="col-12">
         <div id="imagePerfil" class="row">
             <label class="ml-auto mr-auto" for="upload_image">

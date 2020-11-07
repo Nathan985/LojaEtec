@@ -52,35 +52,21 @@ CREATE TABLE IF NOT EXISTS Tbl_Estoque(
 CREATE TABLE IF NOT EXISTS Tbl_Vendas(
 
 	id_Venda VARCHAR(100) NOT NULL UNIQUE,
-    codigo VARCHAR(40) NOT NULL UNIQUE,
     data_venda DATE NOT NULL DEFAULT NOW(),
+    codigo_venda INT UNSIGNED NOT NULL UNIQUE AUTO_INCREMENT,
     total_venda DECIMAL(10, 2) UNSIGNED NOT NULL,
     cpf VARCHAR(20) NULL,
-    pagamento VARCHAR(20) NOT NULL,
-	fk_id_Usuario VARCHAR(100) NOT NULL,
+    preco_unidade DECIMAL(10, 2) UNSIGNED NOT NULL,
+    quantidade INT UNSIGNED NOT NULL,
+    fk_id_Produto VARCHAR(100) NOT NULL,
     PRIMARY KEY(id_Venda)
 );
-
-#CRIAÇÃO DA TABELA QUANTIDADE_PRODUTOS
-CREATE TABLE IF NOT EXISTS Tbl_QuantidadeProdutos(
-
-	id_ProdutosComprados VARCHAR(100) NOT NULL UNIQUE,
-	quantidade INT UNSIGNED NOT NULL,
-    preco_unidade DECIMAL(10, 2) UNSIGNED NOT NULL,
-    total DECIMAL(10, 2) UNSIGNED NOT NULL,
-    fk_id_Venda VARCHAR(100) NOT NULL,
-    PRIMARY KEY(id_ProdutosComprados)
-);
-
 -- CRIANDO AS FOREIGN KEY
-
-#FOREIGN KEY TABELA VENDAS CAMPO ID_USUARIO
-ALTER TABLE Tbl_Vendas ADD CONSTRAINT fk_id_Usuario_vendas FOREIGN KEY (fk_id_Usuario) REFERENCES Tbl_Usuario(id_Usuario);
-
-#FOREIGN KEY TABELA QUANTIDADE_PRODUTOS CAMPO ID_VENDA
-ALTER TABLE Tbl_QuantidadeProdutos ADD CONSTRAINT fk_id_Venda_Quantidade FOREIGN KEY (fk_id_Venda) REFERENCES Tbl_Vendas(id_Venda);
 
 #FOREIGN KEY TABELA ESTOQUE CAMPO ID_PRODUTO
 ALTER TABLE Tbl_Estoque ADD CONSTRAINT fk_id_Produto_Estoque FOREIGN KEY (fk_id_Produto) REFERENCES Tbl_Produto(id_Produto);
+
+#FOREIGN KEY TABELA VENDAS CAMPO ID_PRODUTO
+ALTER TABLE Tbl_Vendas ADD CONSTRAINT fk_id_Produto_Vandas FOREIGN KEY (fk_id_Produto) REFERENCES Tbl_Produto(id_Produto);
 
 -- -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

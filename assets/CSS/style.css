@@ -280,3 +280,8 @@
 #pagCad{
     margin-top: 15px;
 }
+.searchImg{
+    padding: 8px;
+    border-radius: 30%;
+    cursor: pointer;
+}
