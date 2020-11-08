@@ -22,14 +22,14 @@ class DalProdutos extends CI_Model
 
     public function ValidarCodigo($value)
     {
-        $this->db->where("codigo", $value);
+        $this->db->where("codigo_Pd", $value);
         $result = $this->db->get("Tbl_Produto")->row_array();
         return $result;
     }
 
     public function SelectEstoque()
     {
-        $this->db->select('nome, preco, foto, quantidade, data_estoque');
+        $this->db->select('nome, codigo_Pd, preco, foto, quantidade, data_estoque');
         $this->db->from('Tbl_Produto');
         $this->db->join('Tbl_Estoque', 'fk_id_produto = id_Produto');
         $linha = $this->db->get()->result_array();

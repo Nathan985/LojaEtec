@@ -15,10 +15,6 @@ class BLL_Produtos extends CI_Controller
         $this->load->view('view_Estoque', $data);
     }
 
-    public function BuscarEstoque(){
-        
-    }
-
     public function Uploadfoto()
     {
         $data = $_POST["image"];
@@ -49,7 +45,7 @@ class BLL_Produtos extends CI_Controller
         $data_Produtos = [
             'id_Produto' => md5(date("d/m/Y h:i:s")),
             'nome' => $this->input->post("Nome"),
-            'codigo' => $this->input->post("Codigo"),
+            'codigo_Pd' => $this->input->post("Codigo"),
             'preco' => $this->input->post("Preco"),
             'foto' => $foto,
             'descircao' => $this->input->post("Descricao")
@@ -84,7 +80,7 @@ class BLL_Produtos extends CI_Controller
         }
         $this->load->model('DalProdutos');
 
-        $linha = $this->DalProdutos->ValidarCodigo($data_Produtos['codigo']);
+        $linha = $this->DalProdutos->ValidarCodigo($data_Produtos['codigo_Pd']);
 
         if($linha){
             echo "errocodigojaexistem";

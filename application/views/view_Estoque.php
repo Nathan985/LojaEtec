@@ -15,12 +15,13 @@ if(!isset($this->session->login)){
         <div class='row col-12 CardEstoque'>
             <img class='ImgEstoque' src=" . base_url('assets/IMG/Produtos/'. $dataPd["foto"]) . ">
             <div class='col-4'>
-                <p class='mt-4 textEstoque'>" . $dataPd["nome"] . "</p>
-                <p class='mt-2 textEstoque'>" . $dataPd["preco"] . "</p>
+                <p class='mt-2 textEstoque'>Nome: " . $dataPd["nome"] . "</p>
+                <p class='mt-1 textEstoque'>Codigo: " . $dataPd["codigo_Pd"] . "</p>
+                <p class='mt-2 textEstoque'>Preço: $" . $dataPd["preco"] . "</p>
             </div>
             <div class='col-5 aligncard'>
-                <p class='mt-4 align-bottom textEstoque'>" . $dataPd["quantidade"] . "</p>
-                <p class='mt-2 align-bottom textEstoquequant'>" . $dataPd["data_estoque"] . "</p>
+                <p class='mt-4 align-bottom textEstoque'>Estoque: " . $dataPd["quantidade"] . "</p>
+                <p class='mt-2 align-bottom textEstoquequant'>Data: " . $dataPd["data_estoque"] . "</p>
             </div>
         </div>
     </div> 
@@ -31,7 +32,8 @@ if(!isset($this->session->login)){
         <div class="row col-12 CardEstoque">
             <img class="ImgEstoque" src="<?php echo base_url('assets/IMG/Produtos/a80ce0e1ec36ada8f6a8ae5e0004d5a2.png') ?>" alt="">
             <div class="col-4">
-                <p class="mt-4 textEstoque">Coruja De Papel</p>
+                <p class="mt-2 textEstoque">Coruja De Papel</p>
+                <p class="mt-1 textEstoque">12345788</p>
                 <p class="mt-2 textEstoque">$52.90</p>
             </div>
             <div class="col-5 aligncard">

@@ -5,7 +5,7 @@
 
         public function SelectProduto($value){
             
-            $this->db->where("codigo", $value);
+            $this->db->where("codigo_Pd", $value);
             $linha = $this->db->get("Tbl_Produto")->row_array();
             return $linha;
         }
