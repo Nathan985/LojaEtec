@@ -1616,6 +1616,67 @@ $(function () {
                     titulo.className = "col-4 input-field mt-3";
                 }
 
+                if(data === "estoqueinsuficiente"){
+                    var titulo = document.getElementById("QuantidadeComp");
+                    titulo.className = "input-field mt-5 col-5 invalid";
+
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'center-end',
+                        background: '#fff',
+                        showConfirmButton: false,
+                        width: '420px',
+                        padding: '1.2rem',
+                        timer: 3000,
+                        timerProgressBar: true,
+                        onOpen: (toast) => {
+                            toast.addEventListener('mouseenter', Swal.stopTimer)
+                            toast.addEventListener('mouseleave', Swal.resumeTimer)
+                        }
+                    })
+                    Toast.fire({
+                        customClass: {
+                            content: 'CustomColor',
+                            title: 'CustomText',
+                            popup: 'CustomColor',
+                            footer: 'CustomText'
+                        },
+                        icon: 'error',
+                        title: 'Estoque Insuficiente!',
+                    })
+                }
+                else if(data !== "errorquantidadevazio"){
+                    var titulo = document.getElementById("QuantidadeComp");
+                    titulo.className = "input-field mt-5 col-5";
+                }
+
+                if(data === "erroalterarestoque"){
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'center-end',
+                        background: '#fff',
+                        showConfirmButton: false,
+                        width: '420px',
+                        padding: '1.2rem',
+                        timer: 3000,
+                        timerProgressBar: true,
+                        onOpen: (toast) => {
+                            toast.addEventListener('mouseenter', Swal.stopTimer)
+                            toast.addEventListener('mouseleave', Swal.resumeTimer)
+                        }
+                    })
+                    Toast.fire({
+                        customClass: {
+                            content: 'CustomColor',
+                            title: 'CustomText',
+                            popup: 'CustomColor',
+                            footer: 'CustomText'
+                        },
+                        icon: 'error',
+                        title: 'Erro ao Comprar!',
+                    })
+                }
+
                 if (data === "sucessovenda") {
                     const Toast = Swal.mixin({
                         toast: true,

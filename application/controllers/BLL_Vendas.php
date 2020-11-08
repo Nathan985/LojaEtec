@@ -53,6 +53,19 @@
                 }
             }
             $this->load->model("DALVendas");
+            $Value = $this->DALVendas->SelectQuantidade($dados['fk_id_Produto']);
+            if($dados["quantidade"] > $Value["quantidade"]){
+                echo "estoqueinsuficiente";
+                die();
+            }
+            else{
+                $quantidade = $Value["quantidade"] - $dados["quantidade"];
+                $bool = $this->DALVendas->AlterarEstoque($dados['fk_id_Produto'], $quantidade);
+                if(!$bool){
+                    echo "erroalterarestoque";
+                    die();
+                }
+            }
             $bool = $this->DALVendas->CadastrarVenda($dados);
 
             if($bool){

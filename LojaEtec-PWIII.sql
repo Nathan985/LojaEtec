@@ -68,5 +68,4 @@ ALTER TABLE Tbl_Estoque ADD CONSTRAINT fk_id_Produto_Estoque FOREIGN KEY (fk_id_
 
 #FOREIGN KEY TABELA VENDAS CAMPO ID_PRODUTO
 ALTER TABLE Tbl_Vendas ADD CONSTRAINT fk_id_Produto_Vandas FOREIGN KEY (fk_id_Produto) REFERENCES Tbl_Produto(id_Produto);
-
 -- -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
