@@ -563,3 +563,18 @@ label #sidebar_btn:hover {
 #DivEstoqueCards span{
     color: rgb(39, 39, 39);
 }
+.bannerVendas{
+    
+    padding-bottom: 80px;
+    border-radius: 2rem;
+    background-color: rgb(121, 121, 121);
+    margin-top: 10em;
+}
+.bannerVendas h1 {
+    color: white;
+    padding-top: 30px;
+    margin-bottom: 50px;
+}
+.bannerVendas * {
+    border-radius: 2rem;
+}

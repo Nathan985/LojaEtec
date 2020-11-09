@@ -10,8 +10,8 @@ if (!isset($this->session->login)) {
 ?>
 <html>
 <center>
-    <div class="container bannerTec">
-
+    <div class="container bannerVendas">
+        <h1 class="display-4">Relatorio de Vendas</h1>
         <head>
             <html>
 
@@ -34,7 +34,7 @@ if (!isset($this->session->login)) {
                         ]);
 
                         var options = {
-                            title: 'Grafico De Vendas',
+                            title: 'Produtos Mais Vendidos',
                             is3D: true,
                         };
 
