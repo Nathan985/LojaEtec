@@ -33,6 +33,14 @@ class BLL_Produtos extends CI_Controller
         $this->session->foto_upload = [$nome, $data_convert, $imageName];
     }
 
+    public function RelatorioProdutos(){
+
+        $this->load->model('DALProdutos');
+        $result['results'] = $this->DALProdutos->QuantidadeEstoque();
+        $this->load->view('view_graficos_produtos', $result);
+
+    }
+
     public function ValidarDados()
     {
         if (isset($this->session->foto_upload)) {

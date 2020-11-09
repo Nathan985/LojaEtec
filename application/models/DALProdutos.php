@@ -35,4 +35,17 @@ class DalProdutos extends CI_Model
         $linha = $this->db->get()->result_array();
         return $linha;
     }
+
+    public function QuantidadeEstoque(){
+
+        $this->db->select('id_Produto, nome, quantidade, fk_id_produto');
+        $this->db->from('Tbl_Produto');
+        $this->db->join('Tbl_Estoque', 'fk_id_produto = id_Produto');
+        $this->db->where('quantidade <', 20);
+        $this->db->group_by('quantidade'); 
+        $this->db->limit(4);
+        $linha = $this->db->get()->result_array();
+        return $linha;
+
+    }
 }
