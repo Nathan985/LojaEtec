@@ -12,16 +12,16 @@ if(!isset($this->session->login)){
     foreach ($produto as $dataPd) {
         echo "
             <div class='row col-12 max-heigh mb-4 containerEstoque ml-auto mr-auto mt-4'>
-        <div class='row col-12 CardEstoque'>
+        <div id='DivEstoqueCards' class='row col-12 CardEstoque'>
             <img class='ImgEstoque' src=" . base_url('assets/IMG/Produtos/'. $dataPd["foto"]) . ">
             <div class='col-4'>
-                <p class='mt-2 textEstoque'>Nome: " . $dataPd["nome"] . "</p>
-                <p class='mt-1 textEstoque'>Codigo: " . $dataPd["codigo_Pd"] . "</p>
-                <p class='mt-2 textEstoque'>Preço: $" . $dataPd["preco"] . "</p>
+                <p class='mt-2 textEstoque'><span >Nome: </span>" . $dataPd["nome"] . "</p>
+                <p class='mt-1 textEstoque'><span >Codigo: </span>" . $dataPd["codigo_Pd"] . "</p>
+                <p class='mt-2 textEstoque'><span >Preço: </span>$" . $dataPd["preco"] . "</p>
             </div>
             <div class='col-5 aligncard'>
-                <p class='mt-4 align-bottom textEstoque'>Estoque: " . $dataPd["quantidade"] . "</p>
-                <p class='mt-2 align-bottom textEstoquequant'>Data: " . $dataPd["data_estoque"] . "</p>
+                <p class='mt-4 align-bottom textEstoque'><span>Estoque: </span>" . $dataPd["quantidade"] . "</p>
+                <p class='mt-2 align-bottom textEstoquequant'><span>Data: </span>" . $dataPd["data_estoque"] . "</p>
             </div>
         </div>
     </div> 
@@ -32,7 +32,7 @@ if(!isset($this->session->login)){
         <div class="row col-12 CardEstoque">
             <img class="ImgEstoque" src="<?php echo base_url('assets/IMG/Produtos/a80ce0e1ec36ada8f6a8ae5e0004d5a2.png') ?>" alt="">
             <div class="col-4">
-                <p class="mt-2 textEstoque">Coruja De Papel</p>
+                <p class="mt-2 textEstoque"><span  class="LabelEstoque" >Nome: </span>Coruja De Papel</p>
                 <p class="mt-1 textEstoque">12345788</p>
                 <p class="mt-2 textEstoque">$52.90</p>
             </div>

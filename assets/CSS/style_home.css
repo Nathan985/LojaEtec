@@ -560,3 +560,6 @@ label #sidebar_btn:hover {
 .max-heigh{
     max-height: 150px;
 }
+#DivEstoqueCards span{
+    color: rgb(39, 39, 39);
+}
