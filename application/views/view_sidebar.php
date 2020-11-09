@@ -80,7 +80,7 @@
                                 <a href='#' class='text-decoration-none'><i class='fas fa-tools'></i><span>Alterar Estoque</span></a>
                                 <a href='". base_url('index.php/BLL_Vendas/index') ."' class='text-decoration-none'><i class='fas fa-cart-plus'></i><span>Vendas</span></a>
                                 <a href='#' class='text-decoration-none'><i class='far fa-chart-bar'></i><span>Relatorio Produtos</span></a>
-                                <a href='#' class='text-decoration-none'><i class='fas fa-chart-line'></i><span>Relatorio de Venda</span></a>
+                                <a href='". base_url('index.php/BLL_Vendas/RelatorioVendas') ."' class='text-decoration-none'><i class='fas fa-chart-line'></i><span>Relatorio de Venda</span></a>
                                 ";
                 } else if (isset($this->session->cargo) && $this->session->cargo == "Cliente") {
                     echo "

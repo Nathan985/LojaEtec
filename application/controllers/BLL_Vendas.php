@@ -78,4 +78,12 @@
                 die();
             }
         }
+
+        public function RelatorioVendas(){
+            
+            $this->load->model('DALVendas');
+            $result['results'] = $this->DALVendas->QuantidadeVenda();
+            $this->load->view('view_graficos_vendas', $result);
+
+        }
     }

@@ -29,5 +29,16 @@
             return $this->db->update('Tbl_Estoque', $value);
         }
 
+        public function QuantidadeVenda(){
+
+            $this->db->select('id_Venda, id_Produto, nome, COUNT(id_Venda) as Qtd, fk_id_Produto');
+            $this->db->from('Tbl_Produto');
+            $this->db->join('Tbl_Vendas', 'fk_id_produto = id_Produto');
+            $this->db->group_by('id_Produto'); 
+            $this->db->limit(5);
+            $linha = $this->db->get()->result_array();
+            return $linha;
+        }
+
     }
 ?>
