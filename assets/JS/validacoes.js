@@ -1736,3 +1736,502 @@ $(function () {
         return false;
     }); //function de dentro
 }); //function de fora
+
+$(function () {
+    $('#BuscarPd').submit(function () {
+        var obj = this;
+        var form = $(obj);
+        var dados = new FormData(obj);
+        $.ajax({
+            url: form.attr('action'),
+            type: form.attr('method'),
+            data: dados,
+            processData: false,
+            cache: false,
+            contentType: false,
+            success: function (data) {
+                console.log(data);
+                if (data === "errocodigonaoencontrado" || data === "errocodigovazio") {
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'center-end',
+                        background: '#fff',
+                        showConfirmButton: false,
+                        width: '420px',
+                        padding: '1.2rem',
+                        timer: 3000,
+                        timerProgressBar: true,
+                        onOpen: (toast) => {
+                            toast.addEventListener('mouseenter', Swal.stopTimer)
+                            toast.addEventListener('mouseleave', Swal.resumeTimer)
+                        }
+                    })
+                    Toast.fire({
+                        customClass: {
+                            content: 'CustomColor',
+                            title: 'CustomText',
+                            popup: 'CustomColor',
+                            footer: 'CustomText'
+                        },
+                        icon: 'error',
+                        title: 'Produto não encontrado!',
+                    })
+                }
+                else {
+                    const dados = JSON.parse(data);
+                    console.log(dados);
+                    const ElementImg = document.querySelector('#image_pd');
+                    const ElementInputs = {
+                        "nome": document.querySelector('#NomePD'),
+                        "button": document.querySelector('#button-alt'),
+                        "codigo": document.querySelector('#CodigoPF'),
+                        "preco": document.querySelector('#PrecoPD'),
+                        "descricao": document.querySelector('#DescricaoPD'),
+                    }
+                    ElementImg.src = "http://localhost/LojinhaEtec/assets/IMG/Produtos/" + dados.foto.toString();
+                    ElementInputs.nome.value = dados.nome
+                    ElementInputs.preco.value = dados.preco;
+                    ElementInputs.codigo.value = dados.codigo_Pd;
+                    ElementInputs.descricao.value = dados.descircao;
+
+                    ElementInputs.nome.removeAttribute('disabled');
+                    ElementInputs.preco.removeAttribute('disabled');
+                    ElementInputs.descricao.removeAttribute('disabled');
+                    ElementInputs.button.removeAttribute('disabled');
+
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'center-end',
+                        background: '#fff',
+                        showConfirmButton: false,
+                        width: '420px',
+                        padding: '1.2rem',
+                        timer: 3000,
+                        timerProgressBar: true,
+                        onOpen: (toast) => {
+                            toast.addEventListener('mouseenter', Swal.stopTimer)
+                            toast.addEventListener('mouseleave', Swal.resumeTimer)
+                        }
+                    })
+                    Toast.fire({
+                        customClass: {
+                            content: 'CustomColor',
+                            title: 'CustomText',
+                            popup: 'CustomColor',
+                            footer: 'CustomText'
+                        },
+                        icon: 'success',
+                        title: 'Produto Encontrado!',
+                    })
+                }
+
+            }, //success
+        }); //ajax
+        return false;
+    }); //function de dentro
+}); //function de fora
+$(function () {
+    $('#AltPd').submit(function () {
+        var obj = this;
+        var form = $(obj);
+        var dados = new FormData(obj);
+        $.ajax({
+            url: form.attr('action'),
+            type: form.attr('method'),
+            data: dados,
+            processData: false,
+            cache: false,
+            contentType: false,
+            success: function (data) {
+                console.log(data);
+                if(data === "errornomevazio"){
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'center-end',
+                        background: '#fff',
+                        showConfirmButton: false,
+                        width: '420px',
+                        padding: '1.2rem',
+                        timer: 3000,
+                        timerProgressBar: true,
+                        onOpen: (toast) => {
+                            toast.addEventListener('mouseenter', Swal.stopTimer)
+                            toast.addEventListener('mouseleave', Swal.resumeTimer)
+                        }
+                    })
+                    Toast.fire({
+                        customClass: {
+                            content: 'CustomColor',
+                            title: 'CustomText',
+                            popup: 'CustomColor',
+                            footer: 'CustomText'
+                        },
+                        icon: 'error',
+                        title: 'Informe o Nome!',
+                    })
+                }
+                if(data === "errorprecovazio"){
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'center-end',
+                        background: '#fff',
+                        showConfirmButton: false,
+                        width: '420px',
+                        padding: '1.2rem',
+                        timer: 3000,
+                        timerProgressBar: true,
+                        onOpen: (toast) => {
+                            toast.addEventListener('mouseenter', Swal.stopTimer)
+                            toast.addEventListener('mouseleave', Swal.resumeTimer)
+                        }
+                    })
+                    Toast.fire({
+                        customClass: {
+                            content: 'CustomColor',
+                            title: 'CustomText',
+                            popup: 'CustomColor',
+                            footer: 'CustomText'
+                        },
+                        icon: 'error',
+                        title: 'Informe o Preco!',
+                    })
+                }
+                if(data === "errordescircaovazio"){
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'center-end',
+                        background: '#fff',
+                        showConfirmButton: false,
+                        width: '420px',
+                        padding: '1.2rem',
+                        timer: 3000,
+                        timerProgressBar: true,
+                        onOpen: (toast) => {
+                            toast.addEventListener('mouseenter', Swal.stopTimer)
+                            toast.addEventListener('mouseleave', Swal.resumeTimer)
+                        }
+                    })
+                    Toast.fire({
+                        customClass: {
+                            content: 'CustomColor',
+                            title: 'CustomText',
+                            popup: 'CustomColor',
+                            footer: 'CustomText'
+                        },
+                        icon: 'error',
+                        title: 'Informe a Descrição!',
+                    })
+                }
+                if(data === "errorprecoinvalido"){
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'center-end',
+                        background: '#fff',
+                        showConfirmButton: false,
+                        width: '420px',
+                        padding: '1.2rem',
+                        timer: 3000,
+                        timerProgressBar: true,
+                        onOpen: (toast) => {
+                            toast.addEventListener('mouseenter', Swal.stopTimer)
+                            toast.addEventListener('mouseleave', Swal.resumeTimer)
+                        }
+                    })
+                    Toast.fire({
+                        customClass: {
+                            content: 'CustomColor',
+                            title: 'CustomText',
+                            popup: 'CustomColor',
+                            footer: 'CustomText'
+                        },
+                        icon: 'error',
+                        title: 'Preço Inválido',
+                    })
+                }
+                if(data === "errocodigovazio"){
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'center-end',
+                        background: '#fff',
+                        showConfirmButton: false,
+                        width: '420px',
+                        padding: '1.2rem',
+                        timer: 3000,
+                        timerProgressBar: true,
+                        onOpen: (toast) => {
+                            toast.addEventListener('mouseenter', Swal.stopTimer)
+                            toast.addEventListener('mouseleave', Swal.resumeTimer)
+                        }
+                    })
+                    Toast.fire({
+                        customClass: {
+                            content: 'CustomColor',
+                            title: 'CustomText',
+                            popup: 'CustomColor',
+                            footer: 'CustomText'
+                        },
+                        icon: 'error',
+                        title: 'Busque o Produto!',
+                    })
+                }
+                if(data === "success"){
+                    var campos = document.querySelectorAll('#AltPd input');
+                    const imgElement = document.querySelector('#image_pd');
+                    imgElement.src = "http://localhost/LojinhaEtec/assets/IMG/product.png"
+                    for (campo of campos) {
+                        campo.value = '';
+                        campo.setAttribute('disabled', true)
+                    }
+
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'center-end',
+                        background: '#fff',
+                        showConfirmButton: false,
+                        width: '420px',
+                        padding: '1.2rem',
+                        timer: 3000,
+                        timerProgressBar: true,
+                        onOpen: (toast) => {
+                            toast.addEventListener('mouseenter', Swal.stopTimer)
+                            toast.addEventListener('mouseleave', Swal.resumeTimer)
+                        }
+                    })
+                    Toast.fire({
+                        customClass: {
+                            content: 'CustomColor',
+                            title: 'CustomText',
+                            popup: 'CustomColor',
+                            footer: 'CustomText'
+                        },
+                        icon: 'success',
+                        title: 'Produto Alterado!',
+                    })
+                }
+
+            }, //success
+        }); //ajax
+        return false;
+    }); //function de dentro
+}); //function de fora
+$(function () {
+    $('#Bd').submit(function () {
+        var obj = this;
+        var form = $(obj);
+        var dados = new FormData(obj);
+        $.ajax({
+            url: form.attr('action'),
+            type: form.attr('method'),
+            data: dados,
+            processData: false,
+            cache: false,
+            contentType: false,
+            success: function (data) {
+                console.log(data);
+                if (data === "errocodigonaoencontrado" || data === "errocodigovazio") {
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'center-end',
+                        background: '#fff',
+                        showConfirmButton: false,
+                        width: '420px',
+                        padding: '1.2rem',
+                        timer: 3000,
+                        timerProgressBar: true,
+                        onOpen: (toast) => {
+                            toast.addEventListener('mouseenter', Swal.stopTimer)
+                            toast.addEventListener('mouseleave', Swal.resumeTimer)
+                        }
+                    })
+                    Toast.fire({
+                        customClass: {
+                            content: 'CustomColor',
+                            title: 'CustomText',
+                            popup: 'CustomColor',
+                            footer: 'CustomText'
+                        },
+                        icon: 'error',
+                        title: 'Produto não encontrado!',
+                    })
+                }
+                else {
+                    const dados = JSON.parse(data);
+                    console.log(dados);
+                    const ElementImg = document.querySelector('#image_pd');
+                    const ElementInputs = {
+                        "dt_estoque": document.querySelector('#DataPF'),
+                        "quantidade": document.querySelector('#QuantidadePD'),
+                        "id_estoque": document.querySelector('#id_estoque'),
+                        "button": document.querySelector('#buttonAlt'),
+                    }
+                    ElementImg.src = "http://localhost/LojinhaEtec/assets/IMG/Produtos/" + dados.foto.toString();
+
+                    ElementInputs.dt_estoque.value = dados.data_estoque;
+                    ElementInputs.quantidade.value = dados.quantidade;
+                    ElementInputs.id_estoque.value = dados.id_Estoque;
+
+                    ElementInputs.dt_estoque.removeAttribute('disabled');
+                    ElementInputs.quantidade.removeAttribute('disabled');
+                    ElementInputs.button.removeAttribute('disabled');
+
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'center-end',
+                        background: '#fff',
+                        showConfirmButton: false,
+                        width: '420px',
+                        padding: '1.2rem',
+                        timer: 3000,
+                        timerProgressBar: true,
+                        onOpen: (toast) => {
+                            toast.addEventListener('mouseenter', Swal.stopTimer)
+                            toast.addEventListener('mouseleave', Swal.resumeTimer)
+                        }
+                    })
+                    Toast.fire({
+                        customClass: {
+                            content: 'CustomColor',
+                            title: 'CustomText',
+                            popup: 'CustomColor',
+                            footer: 'CustomText'
+                        },
+                        icon: 'success',
+                        title: 'Produto Encontrado!',
+                    })
+                }
+
+            }, //success
+        }); //ajax
+        return false;
+    }); //function de dentro
+}); //function de fora
+$(function () {
+    $('#AltEstoque').submit(function () {
+        var obj = this;
+        var form = $(obj);
+        var dados = new FormData(obj);
+        $.ajax({
+            url: form.attr('action'),
+            type: form.attr('method'),
+            data: dados,
+            processData: false,
+            cache: false,
+            contentType: false,
+            success: function (data) {
+                if(data === "erroquantidadevazio"){
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'center-end',
+                        background: '#fff',
+                        showConfirmButton: false,
+                        width: '420px',
+                        padding: '1.2rem',
+                        timer: 3000,
+                        timerProgressBar: true,
+                        onOpen: (toast) => {
+                            toast.addEventListener('mouseenter', Swal.stopTimer)
+                            toast.addEventListener('mouseleave', Swal.resumeTimer)
+                        }
+                    })
+                    Toast.fire({
+                        customClass: {
+                            content: 'CustomColor',
+                            title: 'CustomText',
+                            popup: 'CustomColor',
+                            footer: 'CustomText'
+                        },
+                        icon: 'error',
+                        title: 'Informe a Quantidade!',
+                    })
+                }
+                if(data === "errodata_estoquevazio"){
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'center-end',
+                        background: '#fff',
+                        showConfirmButton: false,
+                        width: '420px',
+                        padding: '1.2rem',
+                        timer: 3000,
+                        timerProgressBar: true,
+                        onOpen: (toast) => {
+                            toast.addEventListener('mouseenter', Swal.stopTimer)
+                            toast.addEventListener('mouseleave', Swal.resumeTimer)
+                        }
+                    })
+                    Toast.fire({
+                        customClass: {
+                            content: 'CustomColor',
+                            title: 'CustomText',
+                            popup: 'CustomColor',
+                            footer: 'CustomText'
+                        },
+                        icon: 'error',
+                        title: 'Informe a Data!',
+                    })
+                }
+                if(data === "errocodigovazio"){
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'center-end',
+                        background: '#fff',
+                        showConfirmButton: false,
+                        width: '420px',
+                        padding: '1.2rem',
+                        timer: 3000,
+                        timerProgressBar: true,
+                        onOpen: (toast) => {
+                            toast.addEventListener('mouseenter', Swal.stopTimer)
+                            toast.addEventListener('mouseleave', Swal.resumeTimer)
+                        }
+                    })
+                    Toast.fire({
+                        customClass: {
+                            content: 'CustomColor',
+                            title: 'CustomText',
+                            popup: 'CustomColor',
+                            footer: 'CustomText'
+                        },
+                        icon: 'error',
+                        title: 'Busque o Produto!',
+                    })
+                }
+                if(data === "success"){
+                    var campos = document.querySelectorAll('#AltEstoque input');
+                    const imgElement = document.querySelector('#image_pd');
+                    imgElement.src = "http://localhost/LojinhaEtec/assets/IMG/product.png"
+                    for (campo of campos) {
+                        campo.value = '';
+                        campo.setAttribute('disabled', true)
+                    }
+
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'center-end',
+                        background: '#fff',
+                        showConfirmButton: false,
+                        width: '420px',
+                        padding: '1.2rem',
+                        timer: 3000,
+                        timerProgressBar: true,
+                        onOpen: (toast) => {
+                            toast.addEventListener('mouseenter', Swal.stopTimer)
+                            toast.addEventListener('mouseleave', Swal.resumeTimer)
+                        }
+                    })
+                    Toast.fire({
+                        customClass: {
+                            content: 'CustomColor',
+                            title: 'CustomText',
+                            popup: 'CustomColor',
+                            footer: 'CustomText'
+                        },
+                        icon: 'success',
+                        title: 'Estoque Alterado!',
+                    })
+                }
+            }, //success
+        }); //ajax
+        return false;
+    }); //function de dentro
+}); //function de fora

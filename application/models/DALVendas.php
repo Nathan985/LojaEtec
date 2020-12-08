@@ -6,7 +6,9 @@
         public function SelectProduto($value){
             
             $this->db->where("codigo_Pd", $value);
-            $linha = $this->db->get("Tbl_Produto")->row_array();
+            $this->db->from('Tbl_Produto');
+            $this->db->join('Tbl_Estoque', 'fk_id_produto  = id_Produto');
+            $linha = $this->db->get()->row_array();
             return $linha;
         }
 

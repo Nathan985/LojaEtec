@@ -48,4 +48,14 @@ class DalProdutos extends CI_Model
         return $linha;
 
     }
+
+    public function AlterarEstoque($data, $where){
+        $this->db->where("id_Estoque", $where);
+        return $this->db->update('Tbl_Estoque', $data);
+    }
+
+    public function AlterarProduto($data, $codigo_Pd){
+        $this->db->where("codigo_Pd", $codigo_Pd);
+        return $this->db->update('Tbl_Produto', $data);
+    }
 }

@@ -76,8 +76,8 @@
                                 <a href='".base_url('index.php/BLL_Usuarios/Perfil') ."' class='text-decoration-none'><i class='fas fa-users-cog'></i><span>Perfil</span></a>
                                 <a href='". base_url('index.php/BLL_Produtos/') ."' class='text-decoration-none'><i class='fas fa-dolly'></i><span>Cadastrar Produto</span></a>
                                 <a href='". base_url('index.php/BLL_Produtos/Estoque') ."' class='text-decoration-none'><i class='fas fa-box-open'></i><span>Estoque</span></a>
-                                <a href='#' class='text-decoration-none'><i class='far fa-edit'></i><span>Alterar Produto</span></a>
-                                <a href='#' class='text-decoration-none'><i class='fas fa-tools'></i><span>Alterar Estoque</span></a>
+                                <a href='". base_url('index.php/BLL_Produtos/alterarProduto') ."' class='text-decoration-none'><i class='far fa-edit'></i><span>Alterar Produto</span></a>
+                                <a href='". base_url("index.php/BLL_Produtos/AlterarEstoque") ."' class='text-decoration-none'><i class='fas fa-tools'></i><span>Alterar Estoque</span></a>
                                 <a href='". base_url('index.php/BLL_Vendas/index') ."' class='text-decoration-none'><i class='fas fa-cart-plus'></i><span>Vendas</span></a>
                                 <a href='". base_url('index.php/BLL_Produtos/RelatorioProdutos') ."' class='text-decoration-none'><i class='far fa-chart-bar'></i><span>Relatorio Produtos</span></a>
                                 <a href='". base_url('index.php/BLL_Vendas/RelatorioVendas') ."' class='text-decoration-none'><i class='fas fa-chart-line'></i><span>Relatorio de Venda</span></a>
